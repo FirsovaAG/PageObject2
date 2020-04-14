@@ -3,9 +3,40 @@ from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from .locators import BasePageLocators
 import math
 
+
+
 class BasePage():
+
+
+        
+
+    def go_to_login_page(self):
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+
+    def go_to_basket_page(self):
+        link = self.browser.find_element(*BasePageLocators.BASKET_ON_PAGE)
+        link.click()
+
+    def should_not_be_product_in_a_basket(self):
+        assert self.is_not_element_present(*BasePageLocators.STUFF_IN_BASKET), "Product is presented in basket"
+
+        
+    def should_be_text_about_empty_basket(self):
+        assert self.is_element_present(*BasePageLocators.TEXT_ABOUT_EMPTY_BASKET), "Text about empty basket is not presented in basket"
+        "Success message is not presented"
+        #сообщение о добавлении отсутсвует
+#переход в корзину
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                 " probably unauthorised user"
 
     def __init__(self, browser, url, timeout=10):
         #Внутри конструктора сохраняем эти данные как аттрибуты нашего класса
