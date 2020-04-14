@@ -12,7 +12,7 @@ class ProductPage(BasePage):
         #проверка, что есть кнопка "Добавить в корзину"
 
     def should_be_basket_on_product_page(self):
-        assert self.is_element_present(*ProductPageLocators.BASKET_ON_PRODUCT_PAGE), "Bastet on product's page to add basket is not found"
+        assert self.is_element_present(*ProductPageLocators.BASKET_ON_PRODUCT_PAGE), "Basket on product's page to add basket is not found"
         #проверка, что есть кнопка "Корзина" на странице товара
 
     def add_product_to_basket(self):
